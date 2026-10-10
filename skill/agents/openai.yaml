@@ -1,0 +1,4 @@
+interface:
+  display_name: "1688 六类机会选品"
+  short_description: "从兼容的 product-opportunities.json 生成六类选品组合、候选 JSON 和 HTML 报告。"
+  default_prompt: "Use $1688-opportunity-sourcing-research to complete the requested 1688 task within its declared contract."

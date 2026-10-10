@@ -1,0 +1,159 @@
+{
+  "schema": "portable-skill-capabilities",
+  "schema_version": "1.0.0",
+  "skill": "1688-opportunity-sourcing-research",
+  "target_platforms": [
+    "codex",
+    "sealseek",
+    "workbuddy"
+  ],
+  "capabilities": [
+    {
+      "id": "sourcing.product.text-search",
+      "purpose": "Search 1688 products by an explicit recorded keyword and return normalized product evidence.",
+      "required": true,
+      "required_features": [
+        "read_only_platform_query",
+        "utf8_keyword",
+        "structured_json",
+        "source_provenance"
+      ],
+      "input_fields": [
+        "query",
+        "limit",
+        "output_path"
+      ],
+      "output_fields": [
+        "products",
+        "query",
+        "count",
+        "source_file"
+      ],
+      "side_effects": {
+        "external_mutation": false,
+        "may_cost_money": false,
+        "authorization": "use the configured official 1688 AK for read-only queries; create a new local JSON file only"
+      },
+      "errors": [
+        "AUTH_REQUIRED",
+        "ACCESS_DENIED",
+        "PROVIDER_MISSING",
+        "PROVIDER_TIMEOUT",
+        "OUTPUT_EXISTS"
+      ]
+    },
+    {
+      "id": "sourcing.supplier.search",
+      "purpose": "Optionally find supplier profiles when the product list alone does not identify enough merchant information.",
+      "required": false,
+      "required_features": [
+        "read_only_platform_query",
+        "structured_json",
+        "source_provenance"
+      ],
+      "input_fields": [
+        "query",
+        "output_path"
+      ],
+      "output_fields": [
+        "suppliers",
+        "count",
+        "source_file"
+      ],
+      "side_effects": {
+        "external_mutation": false,
+        "may_cost_money": false,
+        "authorization": "use configured official 1688 AK for read-only supplier query; create a new local JSON file only"
+      },
+      "errors": [
+        "AUTH_REQUIRED",
+        "ACCESS_DENIED",
+        "PROVIDER_MISSING",
+        "PROVIDER_TIMEOUT",
+        "OUTPUT_EXISTS"
+      ]
+    },
+    {
+      "id": "portfolio.scripts",
+      "purpose": "Execute deterministic category planning, evidence preparation and validated report generation",
+      "required": true,
+      "required_features": [
+        "python3_stdlib",
+        "utf8",
+        "exclusive_output",
+        "bundled_template"
+      ],
+      "input_fields": [
+        "task_artifacts"
+      ],
+      "output_fields": [
+        "evidence",
+        "validation"
+      ],
+      "side_effects": {
+        "external_mutation": false,
+        "may_cost_money": false,
+        "authorization": "Read task evidence; create new local artifacts only"
+      },
+      "errors": [
+        "CAPABILITY_UNAVAILABLE",
+        "INVALID_INPUT",
+        "OUTPUT_EXISTS"
+      ]
+    },
+    {
+      "id": "portfolio.image.inspect",
+      "purpose": "Review exact HTTPS product images and record per-product visual evidence",
+      "required": true,
+      "required_features": [
+        "remote_https_images",
+        "per_product_evidence",
+        "no_image_download"
+      ],
+      "input_fields": [
+        "task_artifacts"
+      ],
+      "output_fields": [
+        "evidence",
+        "validation"
+      ],
+      "side_effects": {
+        "external_mutation": false,
+        "may_cost_money": false,
+        "authorization": "Read task evidence; create new local artifacts only"
+      },
+      "errors": [
+        "CAPABILITY_UNAVAILABLE",
+        "INVALID_INPUT",
+        "OUTPUT_EXISTS"
+      ]
+    },
+    {
+      "id": "portfolio.report.inspect",
+      "purpose": "Inspect generated HTML on desktop and mobile",
+      "required": true,
+      "required_features": [
+        "html_open",
+        "desktop_mobile_layout",
+        "javascript_errors"
+      ],
+      "input_fields": [
+        "task_artifacts"
+      ],
+      "output_fields": [
+        "evidence",
+        "validation"
+      ],
+      "side_effects": {
+        "external_mutation": false,
+        "may_cost_money": false,
+        "authorization": "Read task evidence; create new local artifacts only"
+      },
+      "errors": [
+        "CAPABILITY_UNAVAILABLE",
+        "INVALID_INPUT",
+        "OUTPUT_EXISTS"
+      ]
+    }
+  ]
+}

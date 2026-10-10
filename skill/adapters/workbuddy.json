@@ -1,0 +1,99 @@
+{
+  "schema": "portable-skill-adapter",
+  "schema_version": "1.0.0",
+  "platform": "workbuddy",
+  "mappings": [
+    {
+      "capability_id": "sourcing.product.text-search",
+      "status": "implemented",
+      "implementation": {
+        "kind": "stable-cli",
+        "discovery": "Use 1688-opportunity-sourcing-research script for application scripts, tool for atomic queries; discover canonical dependency before acquisition"
+      },
+      "features": [
+        "read_only_platform_query",
+        "utf8_keyword",
+        "structured_json",
+        "source_provenance"
+      ],
+      "permissions": [
+        "read task inputs",
+        "write new local output"
+      ],
+      "normalization": "Preserve product identity, source provenance and actual execution failures."
+    },
+    {
+      "capability_id": "sourcing.supplier.search",
+      "status": "implemented",
+      "implementation": {
+        "kind": "stable-cli",
+        "discovery": "Use 1688-opportunity-sourcing-research script for application scripts, tool for atomic queries; discover canonical dependency before acquisition"
+      },
+      "features": [
+        "read_only_platform_query",
+        "structured_json",
+        "source_provenance"
+      ],
+      "permissions": [
+        "read task inputs",
+        "write new local output"
+      ],
+      "normalization": "Preserve product identity, source provenance and actual execution failures."
+    },
+    {
+      "capability_id": "portfolio.scripts",
+      "status": "implemented",
+      "implementation": {
+        "kind": "stable-cli",
+        "discovery": "Use 1688-opportunity-sourcing-research script for application scripts, tool for atomic queries; discover canonical dependency before acquisition"
+      },
+      "features": [
+        "python3_stdlib",
+        "utf8",
+        "exclusive_output",
+        "bundled_template"
+      ],
+      "permissions": [
+        "read task inputs",
+        "write new local output"
+      ],
+      "normalization": "Preserve product identity, source provenance and actual execution failures."
+    },
+    {
+      "capability_id": "portfolio.image.inspect",
+      "status": "implemented",
+      "implementation": {
+        "kind": "agent-native",
+        "discovery": "Use current advertised image/browser capabilities; if unavailable return CAPABILITY_UNAVAILABLE"
+      },
+      "features": [
+        "remote_https_images",
+        "per_product_evidence",
+        "no_image_download"
+      ],
+      "permissions": [
+        "read task inputs",
+        "write new local output"
+      ],
+      "normalization": "Preserve product identity, source provenance and actual execution failures."
+    },
+    {
+      "capability_id": "portfolio.report.inspect",
+      "status": "implemented",
+      "implementation": {
+        "kind": "agent-native",
+        "discovery": "Use current advertised image/browser capabilities; if unavailable return CAPABILITY_UNAVAILABLE"
+      },
+      "features": [
+        "html_open",
+        "desktop_mobile_layout",
+        "javascript_errors"
+      ],
+      "permissions": [
+        "read task inputs",
+        "write new local output"
+      ],
+      "normalization": "Preserve product identity, source provenance and actual execution failures."
+    }
+  ]
+}
